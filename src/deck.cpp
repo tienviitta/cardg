@@ -1,16 +1,18 @@
 #include "deck.h"
 #include <algorithm>
+#include <iostream>
+#include <memory>
 
 Deck::Deck()
-    : deck()
+    : deck_unq()
 {
-    deck.reserve(52);
-    for (size_t suit = Card::HEARTS; suit != Card::SPADES; ++suit)
+    // std::cout << "Constructor: " << __func__ << std::endl;
+    for (size_t suit = Card::HEARTS; suit <= Card::SPADES; ++suit)
     {
-        for (size_t rank = Card::TWO; rank != Card::ACE; ++rank)
+        for (size_t rank = Card::TWO; rank <= Card::ACE; ++rank)
         {
-            deck.push_back(
-                new Card(
+            deck_unq.push_front(
+                std::make_unique<Card>(
                     static_cast<Card::Rank>(rank),
                     static_cast<Card::Suit>(suit)));
         }
@@ -19,28 +21,28 @@ Deck::Deck()
 
 Deck::~Deck()
 {
-    for (Card *card : deck)
-    {
-        delete card;
-    }
-    deck.clear();
+    // std::cout << "Destructor: " << __func__ << std::endl;
 }
 
 void Deck::Shuffle()
 {
-    std::random_shuffle(deck.begin(), deck.end());
+    std::random_shuffle(deck_unq.begin(), deck_unq.end());
 }
 
-Card* Deck::PopCard()
+std::unique_ptr<Card> Deck::PopCard()
 {
-    return deck.front();
+    // Take Card from the Deck
+    std::unique_ptr<Card> take = std::move(deck_unq.front());
+    deck_unq.pop_front();
+    return take;
 }
 
 std::ostream &operator<<(std::ostream &os, const Deck &deck)
 {
-    for (size_t card = 0; card < deck.deck.size(); card++)
+    for (size_t card = 0; card < deck.deck_unq.size(); card++)
     {
-        os << *(deck.deck[card]);
+        // Dereference Card pointer
+        os << *(deck.deck_unq[card]);
     }
     return os;
 }

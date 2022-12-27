@@ -6,6 +6,7 @@
 class Card
 {
 public:
+    constexpr static char SuitFace[4] = {'H', 'D', 'C', 'S'};
     enum Suit
     {
         HEARTS,
@@ -13,6 +14,7 @@ public:
         CLUBS,
         SPADES
     };
+    constexpr static char RankFace[15] = {'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'};
     enum Rank
     {
         TWO = 2,

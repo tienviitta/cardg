@@ -2,18 +2,19 @@
 #define DECK_H
 
 #include "card.h"
-#include <vector>
+#include <deque>
 #include <iostream>
+#include <memory>
 
 class Deck
 {
 private:
-    std::vector<Card *> deck;
+    std::deque<std::unique_ptr<Card>> deck_unq;
 public:
     Deck();
     ~Deck();
     void Shuffle();
-    Card * PopCard();
+    std::unique_ptr<Card> PopCard();
     friend std::ostream &operator<<(std::ostream &os, const Deck &deck);
 };
 
