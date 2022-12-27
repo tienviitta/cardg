@@ -4,7 +4,7 @@
 #include <memory>
 
 Deck::Deck()
-    : deck_unq()
+    : deck_unq(), name("Dealer")
 {
     // std::cout << "Constructor: " << __func__ << std::endl;
     for (size_t suit = Card::HEARTS; suit <= Card::SPADES; ++suit)
@@ -17,6 +17,12 @@ Deck::Deck()
                     static_cast<Card::Suit>(suit)));
         }
     }
+}
+
+Deck::Deck(std::string name)
+    : deck_unq(), name(name)
+{
+    // std::cout << "Constructor: " << __func__ << std::endl;
 }
 
 Deck::~Deck()
@@ -32,13 +38,20 @@ void Deck::Shuffle()
 std::unique_ptr<Card> Deck::PopCard()
 {
     // Take Card from the Deck
-    std::unique_ptr<Card> take = std::move(deck_unq.front());
+    std::unique_ptr<Card> card = std::move(deck_unq.front());
     deck_unq.pop_front();
-    return take;
+    return card;
+}
+
+void Deck::PushCard(std::unique_ptr<Card> card)
+{
+    // Push Card to the fron of the Deck
+    deck_unq.push_front(std::move(card));
 }
 
 std::ostream &operator<<(std::ostream &os, const Deck &deck)
 {
+    os << deck.name << ": ";
     for (size_t card = 0; card < deck.deck_unq.size(); card++)
     {
         // Dereference Card pointer
