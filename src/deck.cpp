@@ -35,6 +35,16 @@ void Deck::Shuffle()
     std::random_shuffle(deck_unq.begin(), deck_unq.end());
 }
 
+void Deck::Ascending()
+{
+    std::sort(deck_unq.begin(), deck_unq.end());
+}
+
+void Deck::Descending()
+{
+    std::sort(deck_unq.rbegin(), deck_unq.rend());
+}
+
 std::unique_ptr<Card> Deck::PopCard()
 {
     // Take Card from the Deck

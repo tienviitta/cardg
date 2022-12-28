@@ -16,6 +16,8 @@ public:
     Deck(std::string name);
     ~Deck();
     void Shuffle();
+    void Ascending();
+    void Descending();
     std::unique_ptr<Card> PopCard();
     void PushCard(std::unique_ptr<Card>);
     friend std::ostream &operator<<(std::ostream &os, const Deck &deck);

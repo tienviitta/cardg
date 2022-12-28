@@ -28,9 +28,21 @@ int Card::getFaceValue()
     return static_cast<int>(rank);
 }
 
+bool Card::operator<(const Card &card) const
+{
+    if (suit != card.suit)
+    {
+        return (suit < card.suit);
+    }
+    else
+    {
+        return (rank < card.rank);
+    }
+}
+
 std::ostream &operator<<(std::ostream &os, const Card &card)
 {
     // Note! Rank is from 2 to 14!
-    os << Card::RankFace[static_cast<int>(card.rank)-2] << Card::SuitFace[static_cast<int>(card.suit)] << ", ";
+    os << Card::RankFace[static_cast<int>(card.rank) - 2] << Card::SuitFace[static_cast<int>(card.suit)] << ", ";
     return os;
 }

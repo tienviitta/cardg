@@ -36,6 +36,7 @@ public:
     Rank getRank();
     Suit getSuit();
     virtual int getFaceValue();
+    bool operator<(const Card &card) const;
     friend std::ostream &operator<<(std::ostream &os, const Card &card);
 
 private:
