@@ -83,4 +83,7 @@
 	  Finally, if at any time you encounter a bug, or if you wish that GitSavvy included some missing functionality, please open an issue:
 	  https://github.com/timbrel/GitSavvy/issues
 
+	  What is the Super key?
+	  When you press the Super key, the Activities overview is displayed. This key can usually be found on the bottom-left of your keyboard, next to the Alt key, and usually has a Windows logo on it. It is sometimes called the Windows key or system key. If you have an Apple keyboard, you will have a ⌘ (Command) key instead of the Windows key, while Chromebooks have a magnifying glass instead.
+
 */
