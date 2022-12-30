@@ -16,11 +16,11 @@ add_compile_options(-Wall -Weffc++ -Wextra -Wsign-conversion -pedantic -Werror)
 
 # NCURSES
 # find_path(NCURSES_INC ncurses PATHS /usr/local/Cellar/ncurses)
-set(NCURSES_INC /usr/local/Cellar/ncurses/6.3/include)
-message(STATUS "NCURSES_INC: [${NCURSES_INC}]")
+# set(NCURSES_INC /usr/local/Cellar/ncurses/6.3/include)
+# message(STATUS "NCURSES_INC: [${NCURSES_INC}]")
 # find_library(NCURSES_LIB ncurses PATHS /usr/local/Cellar/ncurses)
-set(NCURSES_LIB /usr/local/Cellar/ncurses/6.3/lib/libncursesw.dylib)
-message(STATUS "NCURSES_LIB: [${NCURSES_LIB}]")
+# set(NCURSES_LIB /usr/local/Cellar/ncurses/6.3/lib/libncursesw.dylib)
+# message(STATUS "NCURSES_LIB: [${NCURSES_LIB}]")
 
 add_executable(cardg main.cpp src/card.cpp src/deck.cpp src/hand.cpp include/card.h include/deck.h include/hand.h)
 include_directories(${NCURSES_INC})

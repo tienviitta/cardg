@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include <memory>
+#include <random>
 
 Deck::Deck()
     : deck_unq(), name("Dealer")
@@ -17,6 +18,8 @@ Deck::Deck()
                     static_cast<Card::Suit>(suit)));
         }
     }
+    // TODO: Seed with time when finished etc.?!
+    urbg.seed(654321);
 }
 
 Deck::Deck(std::string name)
@@ -32,7 +35,7 @@ Deck::~Deck()
 
 void Deck::Shuffle()
 {
-    std::random_shuffle(deck_unq.begin(), deck_unq.end());
+    std::shuffle(deck_unq.begin(), deck_unq.end(), urbg);
 }
 
 void Deck::Ascending()

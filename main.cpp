@@ -21,8 +21,8 @@ int main(int, char **)
 
     for (size_t i = 0; i < 5; ++i)
     {
-        hand_p.PushCard(std::move(deck.PopCard()));
-        hand_j.PushCard(std::move(deck.PopCard()));
+        hand_p.PushCard(deck.PopCard());
+        hand_j.PushCard(deck.PopCard());
     }
     std::cout << "Deck: " << std::endl
               << deck << std::endl;

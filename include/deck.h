@@ -5,12 +5,16 @@
 #include <deque>
 #include <iostream>
 #include <memory>
+#include <random>
+#include <algorithm>
+#include <iterator>
 
 class Deck
 {
 private:
     std::deque<std::unique_ptr<Card>> deck_unq;
     std::string name;
+    std::mt19937 urbg;
 public:
     Deck();
     Deck(std::string name);
