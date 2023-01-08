@@ -5,14 +5,14 @@
 #include <random>
 
 Deck::Deck()
-    : deck_unq(), name("Dealer")
+    : deck(), name("Dealer"), urbg()
 {
     // std::cout << "Constructor: " << __func__ << std::endl;
     for (size_t suit = Card::HEARTS; suit <= Card::SPADES; ++suit)
     {
         for (size_t rank = Card::TWO; rank <= Card::ACE; ++rank)
         {
-            deck_unq.push_front(
+            deck.push_front(
                 std::make_unique<Card>(
                     static_cast<Card::Rank>(rank),
                     static_cast<Card::Suit>(suit)));
@@ -23,9 +23,11 @@ Deck::Deck()
 }
 
 Deck::Deck(std::string name)
-    : deck_unq(), name(name)
+    : deck(), name(name), urbg()
 {
     // std::cout << "Constructor: " << __func__ << std::endl;
+    // TODO: Seed with time when finished etc.?!
+    urbg.seed(123456);
 }
 
 Deck::~Deck()
@@ -35,40 +37,40 @@ Deck::~Deck()
 
 void Deck::Shuffle()
 {
-    std::shuffle(deck_unq.begin(), deck_unq.end(), urbg);
+    std::shuffle(deck.begin(), deck.end(), urbg);
 }
 
 void Deck::Ascending()
 {
-    std::sort(deck_unq.begin(), deck_unq.end());
+    std::sort(deck.begin(), deck.end());
 }
 
 void Deck::Descending()
 {
-    std::sort(deck_unq.rbegin(), deck_unq.rend());
+    std::sort(deck.rbegin(), deck.rend());
 }
 
 std::unique_ptr<Card> Deck::PopCard()
 {
     // Take Card from the Deck
-    std::unique_ptr<Card> card = std::move(deck_unq.front());
-    deck_unq.pop_front();
+    std::unique_ptr<Card> card = std::move(deck.front());
+    deck.pop_front();
     return card;
 }
 
 void Deck::PushCard(std::unique_ptr<Card> card)
 {
     // Push Card to the fron of the Deck
-    deck_unq.push_front(std::move(card));
+    deck.push_front(std::move(card));
 }
 
 std::ostream &operator<<(std::ostream &os, const Deck &deck)
 {
     os << deck.name << ": ";
-    for (size_t card = 0; card < deck.deck_unq.size(); card++)
+    for (size_t card = 0; card < deck.deck.size(); card++)
     {
         // Dereference Card pointer
-        os << *(deck.deck_unq[card]);
+        os << *(deck.deck[card]);
     }
     return os;
 }

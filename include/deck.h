@@ -12,7 +12,7 @@
 class Deck
 {
 private:
-    std::deque<std::unique_ptr<Card>> deck_unq;
+    std::deque<std::unique_ptr<Card>> deck;
     std::string name;
     std::mt19937 urbg;
 public:
